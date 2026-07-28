@@ -1,0 +1,10 @@
+{
+  "name": "kosher-gpt-landing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML - no build needed' && mkdir -p dist && cp -r * dist/",
+    "preview": "npx serve dist"
+  }
+}

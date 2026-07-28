@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KosherGPT — ИИ-ассистент по еврейским традициям, галахе и кашруту.">
+  <title>KosherGPT — Еврейские традиции всегда под рукой</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Free:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#fdfbf6;--surface:#ffffff;--primary:#1e4d6b;--primary-dark:#0d2a3f;
+      --accent:#d4a942;--accent-soft:#f0d985;--coral:#e8745c;--teal:#3a8a8a;
+      --text:#2a2a2a;--text-soft:#6b6b6b;--border:#e8e2d4;
+      --radius:20px;--radius-sm:12px;--shadow-sm:0 2px 8px rgba(30,77,107,0.06);
+      --shadow:0 8px 30px rgba(30,77,107,0.08);--shadow-lg:0 20px 60px rgba(30,77,107,0.12);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+    .he{font-family:'Frank Ruhl Free',serif}
+
+    .container{max-width:1140px;margin:0 auto;padding:0 1.5rem}
+    section{padding:6rem 0}
+
+    /* === NAV === */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .3s}
+    nav.scrolled{background:rgba(253,251,246,0.92);backdrop-filter:blur(20px);box-shadow:var(--shadow-sm)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:800;font-size:1.4rem;color:var(--primary-dark)}
+    .logo-star{font-size:1.6rem}
+    .nav-links{display:flex;gap:2rem;align-items:center}
+    .nav-links a{color:var(--text-soft);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .2s}
+    .nav-links a:hover{color:var(--primary)}
+
+    /* === HERO === */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+      background:linear-gradient(160deg,#1e4d6b 0%,#0d2a3f 60%,#0a1f2e 100%);color:#fff}
+    .hero::before{content:'';position:absolute;inset:0;opacity:.04;
+      background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L49 31H80L55 50L64 80L40 62L16 80L25 50L0 31H31z' fill='%23d4a942'/%3E%3C/svg%3E");
+      background-size:80px}
+    .hero::after{content:'';position:absolute;top:-30%;right:-15%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(212,169,66,0.15) 0%,transparent 70%);pointer-events:none}
+    .hero-content{position:relative;z-index:2;max-width:800px;padding:2rem 0}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1.2rem;
+      background:rgba(212,169,66,0.15);border:1px solid rgba(212,169,66,0.3);border-radius:50px;
+      font-size:.85rem;color:var(--accent-soft);margin-bottom:1.5rem;font-weight:500}
+    .hero-badge::before{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+    .hero h1{font-size:clamp(2.8rem,8vw,5rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:.3rem}
+    .hero .he-subtitle{font-size:clamp(1.2rem,4vw,2rem);color:var(--accent);margin-bottom:1.5rem;font-weight:500}
+    .hero p.lead{font-size:clamp(1.1rem,2.5vw,1.35rem);opacity:.85;max-width:580px;margin-bottom:2.5rem;line-height:1.6}
+    .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;border-radius:50px;
+      font-weight:600;font-size:1.05rem;text-decoration:none;border:none;cursor:pointer;transition:all .3s;font-family:inherit}
+    .btn-gold{background:var(--accent);color:var(--primary-dark)}
+    .btn-gold:hover{background:var(--accent-soft);transform:translateY(-3px);box-shadow:0 12px 30px rgba(212,169,66,0.35)}
+    .btn-ghost{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.25)}
+    .btn-ghost:hover{background:rgba(255,255,255,0.15);border-color:var(--accent)}
+
+    /* Floating chat preview */
+    .chat-preview{position:absolute;bottom:0;right:2%;width:380px;max-width:40vw;opacity:0;
+      animation:slideIn 1.2s 0.5s forwards;z-index:1}
+    @keyframes slideIn{to{opacity:.9;transform:translateY(-2rem)}}
+    .chat-bubble{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:20px 20px 4px 20px;
+      padding:1rem 1.2rem;margin-bottom:.75rem;box-shadow:var(--shadow-lg);color:var(--text);font-size:.9rem}
+    .chat-bubble.ai{background:rgba(212,169,66,0.15);border-radius:20px 20px 20px 4px;color:var(--primary-dark)}
+    .chat-bubble strong{color:var(--primary)}
+    .chat-typing{display:inline-flex;gap:3px}
+    .chat-typing span{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:typing 1.4s infinite}
+    .chat-typing span:nth-child(2){animation-delay:.2s}
+    .chat-typing span:nth-child(3){animation-delay:.4s}
+    @keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+
+    /* === SECTION HEADERS === */
+    .section-header{text-align:center;max-width:600px;margin:0 auto 4rem}
+    .section-header .he-label{font-size:1.1rem;color:var(--accent);margin-bottom:.3rem;font-weight:500}
+    .section-header h2{font-size:clamp(2rem,5vw,2.8rem);color:var(--primary-dark);font-weight:700;letter-spacing:-.02em}
+    .section-header p{color:var(--text-soft);font-size:1.15rem;margin-top:.5rem}
+
+    /* === FEATURES === */
+    .features{background:var(--bg)}
+    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+    .feature-card{background:var(--surface);border-radius:var(--radius);padding:2rem;
+      box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+    .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+      background:linear-gradient(90deg,var(--accent),var(--coral));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+    .feature-card:hover::before{transform:scaleX(1)}
+    .feature-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+      font-size:1.6rem;margin-bottom:1.2rem}
+    .fi-blue{background:linear-gradient(135deg,#e8f0f5,#d0e3ee)}
+    .fi-gold{background:linear-gradient(135deg,#fdf4dc,#f5e4b0)}
+    .fi-coral{background:linear-gradient(135deg,#fdeae5,#f9d3c8)}
+    .fi-teal{background:linear-gradient(135deg,#e2f4f4,#c5e8e8)}
+    .fi-purple{background:linear-gradient(135deg,#f0eaf5,#e0d0f0)}
+    .fi-green{background:linear-gradient(135deg,#e8f5e8,#d0e8d0)}
+    .feature-card h3{font-size:1.3rem;color:var(--primary-dark);margin-bottom:.5rem;font-weight:700}
+    .feature-card p{color:var(--text-soft);font-size:.98rem}
+
+    /* === HOW IT WORKS === */
+    .how{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden}
+    .how::before{content:'';position:absolute;inset:0;opacity:.03;
+      background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L49 31H80L55 50L64 80L40 62L16 80L25 50L0 31H31z' fill='white'/%3E%3C/svg%3E")}
+    .how .section-header h2{color:#fff}
+    .how .section-header p{color:rgba(255,255,255,0.7)}
+    .how .section-header .he-label{color:var(--accent)}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;position:relative;z-index:1}
+    .step{text-align:center;padding:1rem}
+    .step-num{width:56px;height:56px;border-radius:50%;background:rgba(212,169,66,0.15);border:2px solid var(--accent);
+      display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--accent);margin:0 auto 1rem}
+    .step h3{font-size:1.2rem;margin-bottom:.5rem;font-weight:600}
+    .step p{color:rgba(255,255,255,0.65);font-size:.95rem}
+
+    /* === TOPICS === */
+    .topics{background:var(--surface)}
+    .topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;max-width:900px;margin:0 auto}
+    .topic-card{padding:1.5rem;border-radius:var(--radius-sm);background:var(--bg);border:1px solid var(--border);
+      text-align:center;transition:all .25s;cursor:pointer}
+    .topic-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+    .topic-emoji{font-size:2rem;margin-bottom:.5rem;display:block}
+    .topic-card h4{font-size:1rem;color:var(--primary-dark);margin-bottom:.2rem}
+    .topic-card span{font-size:.8rem;color:var(--text-soft)}
+
+    /* === CTA / NEWSLETTER === */
+    .cta-section{background:linear-gradient(160deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;text-align:center;padding:5rem 0}
+    .cta-section h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:1rem;font-weight:700}
+    .cta-section p{font-size:1.2rem;opacity:.85;margin-bottom:2rem}
+    .signup{display:flex;gap:.5rem;max-width:480px;margin:0 auto;flex-wrap:wrap}
+    .signup input{flex:1;min-width:250px;padding:1rem 1.5rem;border-radius:50px;border:2px solid transparent;
+      font-size:1rem;font-family:inherit;background:rgba(255,255,255,0.1);color:#fff;transition:border-color .2s}
+    .signup input::placeholder{color:rgba(255,255,255,0.5)}
+    .signup input:focus{outline:none;border-color:var(--accent)}
+    .signup button{padding:1rem 2rem;border-radius:50px;background:var(--accent);color:var(--primary-dark);
+      font-weight:700;border:none;cursor:pointer;font-size:1rem;font-family:inherit;transition:all .2s}
+    .signup button:hover{background:var(--accent-soft);transform:scale(1.05)}
+    .store-badges{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+    .store-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;
+      background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;
+      color:#fff;text-decoration:none;font-size:.9rem;transition:all .2s}
+    .store-badge:hover{background:rgba(255,255,255,0.12)}
+    .store-badge .he{font-size:1.5rem}
+
+    /* === DISCLAIMER === */
+    .disclaimer{background:#fdf6e8;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 0}
+    .disclaimer-box{display:flex;gap:1rem;align-items:flex-start;max-width:800px;margin:0 auto;padding:0 1.5rem}
+    .disclaimer-icon{font-size:2rem;flex-shrink:0}
+    .disclaimer-box p{color:var(--text-soft);font-size:.95rem;line-height:1.7}
+
+    /* === FOOTER === */
+    footer{background:var(--primary-dark);color:rgba(255,255,255,0.6);padding:3rem 0 2rem}
+    .footer-inner{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;max-width:1140px;margin:0 auto;padding:0 1.5rem}
+    .footer-brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:.5rem}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:.9rem;transition:color .2s}
+    .footer-links a:hover{color:var(--accent)}
+    .footer-bottom{text-align:center;padding-top:2rem;margin-top:1rem;border-top:1px solid rgba(255,255,255,0.08);font-size:.85rem}
+
+    /* === RESPONSIVE === */
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .chat-preview{display:none}
+      section{padding:4rem 0}
+      .hero{padding-top:6rem}
+    }
+    .fade-in{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.4,0,.2,1)}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo"><span class="logo-star">⭐</span> KosherGPT</a>
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#how">Как работает</a>
+        <a href="#topics">Темы</a>
+        <a href="#access" class="btn btn-gold" style="padding:.5rem 1.5rem;font-size:.9rem">Ранний доступ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Ранний доступ · Скоро в App Store и Google Play</div>
+        <div class="he he-subtitle">ברוכים הבאים</div>
+        <h1>KosherGPT</h1>
+        <p class="lead">Еврейские традиции всегда под рукой. Спросите о шаббате, кашруте, праздниках или молитвах — и получите ответ, основанный на авторитетных источниках.</p>
+        <div class="hero-cta">
+          <a href="#access" class="btn btn-gold">Получить ранний доступ →</a>
+          <a href="#how" class="btn btn-ghost">Как это работает</a>
+        </div>
+      </div>
+
+      <!-- Chat preview -->
+      <div class="chat-preview">
+        <div class="chat-bubble">
+          <strong>Вы:</strong> Можно ли зажечь свет в шаббат, если стало темно?
+        </div>
+        <div class="chat-bubble ai">
+          <strong>KosherGPT:</strong> Нет. Зажигание электрического света — одна из 39 мелахот (запрещённых работ) в шаббат. Это подпадает под <em>Мав'ир</em> (создание огня/энергии)...
+          <div class="chat-typing" style="margin-top:6px"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="he-label">פיצ'רים</div>
+        <h2>Что умеет KosherGPT?</h2>
+        <p>ИИ с глубоким знанием традиции</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-blue">💬</div>
+          <h3>Вопросы и ответы</h3>
+          <p>Задайте любой вопрос о галахе, традициях, праздниках. Получите чёткий ответ с указанием источников и авторитетных мнений.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-gold">📷</div>
+          <h3>Сканер кошерности</h3>
+          <p>Сфотографируйте продукт или отсканируйте штрихкод. KosherGPT определит кошерный статус, сертификаты и возможные проблемы.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-coral">🔔</div>
+          <h3>Напоминания и зманим</h3>
+          <p>Точные времена молитв, зажигания свечей, начала и конца шаббата. Напоминания о постах, обетах и ритуалах по геолокации.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-teal">🧠</div>
+          <h3>Knowledge Graph</h3>
+          <p>GraphRAG на Neo4J связывает сотни источников — Танах, Талмуд, Шульхан Арух — для точных и контекстуальных ответов.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-purple">📱</div>
+          <h3>Работает офлайн</h3>
+          <p>Базовые вопросы и зманим доступны без интернета. Полная синхронизация при подключении к сети.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon fi-green">🔒</div>
+          <h3>Приватность</h3>
+          <p>Вопросы остаются на вашем устройстве. Шифрование при передаче. Никаких рекламных трекеров.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="he-label">איך זה עובד</div>
+        <h2>Как это работает</h2>
+        <p>Просто спросите — как у раввина, только всегда рядом</p>
+      </div>
+      <div class="steps">
+        <div class="step fade-in">
+          <div class="step-num">1</div>
+          <h3>Задайте вопрос</h3>
+          <p>Текстом, голосом или фото. На русском, иврите или английском — KosherGPT понимает все три.</p>
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">2</div>
+          <h3>ИИ ищет источники</h3>
+          <p>GraphRAG находит релевантные тексты в Торе, Талмуде, Шульхан Арухе и комментариях.</p>
+        
+        </div>
+        <div class="step fade-in">
+          <div class="step-num">3</div>
+          <h3>Получите ответ</h3>
+          <p>Чёткий, структурированный ответ с цитатами источников. С пометкой, когда нужно обратиться к раввину.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section class="topics" id="topics">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="he-label">נושאים</div>
+        <h2>О чём можно спросить</h2>
+        <p>От повседневных вопросов до глубокого изучения</p>
+      </div>
+      <div class="topic-grid fade-in">
+        <div class="topic-card"><span class="topic-emoji">🕯️</span><h4>Шаббат</h4><span>39 мелахот, зажигание свечей</span></div>
+        <div class="topic-card"><span class="topic-emoji">🍽️</span><h4>Кашрут</h4><span>Продукты, сертификаты, комбинации</span></div>
+        <div class="topic-card"><span class="topic-emoji">📅</span><h4>Праздники</h4><span>Песах, Суккот, Шавуот, Рош а-Шана</span></div>
+        <div class="topic-op"><span class="topic-emoji">🙏</span><h4>Молитвы</h4><span>Шахарит, Минха, Маарив, благословения</span></div>
+        <div class="topic-card"><span class="topic-emoji">📜</span><h4>Галаха</h4><span>Практические законы повседневности</span></div>
+        <div class="topic-card"><span class="topic-emoji">💧</span><h4>Миква</h4><span>Законы семейной чистоты (Тахарат ха-Мишпаха)</span></div>
+        <div class="topic-card"><span class="topic-emoji">📖</span><h4>Тора</h4><span>Недельные главы, комментарии</span></div>
+        <div class="topic-card"><span class="topic-emoji">⏰</span><h4>Зманим</h4><span>Времена молитв по геолокации</span></div>
+        <div class="topic-card"><span class="topic-emoji">⚖️</span><h4>Бейт Дин</h4><span>Суды, споры, сертификация</span></div>
+        <div class="topic-card"><span class="topic-emoji">🍷</span><h4>Бракот</h4><span>Благословения до и после еды</span></div>
+        <div class="topic-card"><span class="topic-emoji">💍</span><h4>Свадьба</h4><span>Хупа, ктуба, законы семьи</span></div>
+        <div class="topic-card"><span class="topic-emoji">🕯️</span><h4>Ханука</h4><span>Заповеди, традиции, песни</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="disclaimer">
+    <div class="disclaimer-box">
+      <div class="disclaimer-icon">📖</div>
+      <p><strong>KosherGPT — это информационный инструмент, а не замена раввину.</strong> Для практических галахических решений (псак) обращайтесь к компетентному раввину. Приложение помогает понять основы и найти источники, но не выносит решений от имени авторитетов.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="access">
+    <div class="container">
+      <div class="he-label" style="color:var(--accent);margin-bottom:.5rem">הצטרפו</div>
+      <h2>Будьте в числе первых</h2>
+      <p>Получите ранний доступ и уведомление о запуске</p>
+      <form class="signup" id="signupForm">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit">Подписаться</button>
+      </form>
+      <div class="store-badges">
+        <span class="store-badge"><span class="he">🍎</span> App Store — скоро</span>
+        <span class="store-badge"><span class="he">🤖</span> Google Play — скоро</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span>⭐</span> KosherGPT</div>
+        <p style="font-size:.85rem">© 2026 KosherGPT · kosherno.app</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Конфиденциальность</a>
+        <a href="#">Условия</a>
+        <a href="#">Контакт</a>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>KosherGPT не заменяет консультацию с компетентным раввином. Все галахические решения принимаются индивидуально.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Signup form
+    document.getElementById('signupForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      const input = this.querySelector('input');
+      btn.textContent = '✓ Готово!';
+      btn.style.background = '#4caf50';
+      input.value = '';
+      input.placeholder = 'Спасибо! Мы скоро напишем.';
+    });
+  </script>
+</body>
+</html>
