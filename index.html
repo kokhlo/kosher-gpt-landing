@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="theme-color" content="#1e4d6b">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="KosherGPT — ИИ-ассистент по еврейским традициям, галахе и кашруту.">
   <title>KosherGPT — Еврейские традиции всегда под рукой</title>
@@ -60,9 +61,9 @@
     .btn-ghost:hover{background:rgba(255,255,255,0.15);border-color:var(--accent)}
 
     /* Floating chat preview */
-    .chat-preview{position:absolute;bottom:0;right:2%;width:380px;max-width:40vw;opacity:0;
+    .chat-preview{position:absolute;bottom:3rem;right:5%;width:340px;max-width:38vw;opacity:0;
       animation:slideIn 1.2s 0.5s forwards;z-index:1}
-    @keyframes slideIn{to{opacity:.9;transform:translateY(-2rem)}}
+    @keyframes slideIn{to{opacity:1;transform:translateY(0)}}
     .chat-bubble{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:20px 20px 4px 20px;
       padding:1rem 1.2rem;margin-bottom:.75rem;box-shadow:var(--shadow-lg);color:var(--text);font-size:.9rem}
     .chat-bubble.ai{background:rgba(212,169,66,0.15);border-radius:20px 20px 20px 4px;color:var(--primary-dark)}
@@ -163,9 +164,44 @@
       .chat-preview{display:none}
       section{padding:4rem 0}
       .hero{padding-top:6rem}
+      .lang-switcher{margin-top:.5rem}
     }
-    .fade-in{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.4,0,.2,1)}
-    .fade-in.visible{opacity:1;transform:translateY(0)}
+    .fade-in{opacity:1;transform:none;transition:all .6s cubic-bezier(.4,0,.2,1)}
+    @media(prefers-reduced-motion:no-preference){.fade-in{opacity:0;transform:translateY(30px)}.fade-in.visible{opacity:1;transform:translateY(0)}}
+
+    /* === Language Switcher === */
+    .lang-switcher{display:flex;gap:.3rem;align-items:center;font-size:.8rem;font-weight:500;background:rgba(255,255,255,0.05);border-radius:8px;padding:.2rem .4rem}
+    .lang-switcher button{background:none;border:none;padding:.25rem .6rem;border-radius:6px;color:rgba(255,255,255,0.6);cursor:pointer;transition:all .2s}
+    .lang-switcher button:hover{color:#fff;background:rgba(255,255,255,0.1)}
+    .lang-switcher button.active{background:var(--accent);color:var(--primary-dark)}
+
+    /* === Theme Toggle === */
+    .theme-toggle{background:none;border:none;font-size:1.2rem;cursor:pointer;padding:.3rem;border-radius:8px;transition:all .2s;margin-left:.5rem}
+    .theme-toggle:hover{background:rgba(255,255,255,0.1)}
+
+    /* === Dark Theme === */
+    [data-theme="dark"]{--bg:#0d1117;--surface:#161b22;--primary:#58a6ff;--primary-dark:#0a3d62;--accent:#d29922;--accent-soft:#f0c96e;--text:#e6edf3;--text-soft:#8b949e;--border:#30363d;--shadow:0 8px 30px rgba(0,0,0,0.3)}
+    [data-theme="dark"] .hero::before{background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L37 23H60L41 37L48 60L30 46L12 60L19 37L0 23H31z' fill='%23d29922'/%3E%3C/svg%3E")}
+    [data-theme="dark"] .feature-card{background:var(--surface);border-color:var(--border)}
+    [data-theme="dark"] .topic-card{background:var(--surface);border-color:var(--border)}
+    [data-theme="dark"] .signup input{background:rgba(255,255,255,0.05);color:#fff;border-color:var(--border)}
+    [data-theme="dark"] .store-badge{background:rgba(255,255,255,0.05)}
+    [data-theme="dark"] .disclaimer{background:#161b22;border-color:var(--border)}
+
+    /* === RTL Support === */
+    [dir="rtl"] .nav-inner{flex-direction:row-reverse}
+    [dir="rtl"] .hero-content{text-align:right}
+    [dir="rtl"] .section-header{text-align:right}
+    [dir="rtl"] .topic-grid{direction:rtl}
+    [dir="rtl"] .footer-inner{grid-template-columns:auto 1fr}
+    [dir="rtl"] .chat-preview{right:auto;left:5%}
+    [dir="rtl"] .chat-bubble{border-radius:20px 20px 4px 20px}
+    [dir="rtl"] .chat-bubble.ai{border-radius:20px 20px 20px 4px}
+    [dir="rtl"] .store-badge{flex-direction:row-reverse}
+    [dir="rtl"] .footer-inner>div:first-child{text-align:right}
+    [dir="rtl"] .disclaimer-box{flex-direction:row-reverse}
+    .fade-in.visible{opacity:1;transform:none}
+    @media(prefers-reduced-motion:no-preference){.fade-in{opacity:0;transform:translateY(30px)}.fade-in.visible{opacity:1;transform:translateY(0)}}
   </style>
 </head>
 <body>
@@ -200,11 +236,10 @@
       <!-- Chat preview -->
       <div class="chat-preview">
         <div class="chat-bubble">
-          <strong>Вы:</strong> Можно ли зажечь свет в шаббат, если стало темно?
+          <strong>Вы:</strong> Можно ли зажечь свет в шаббат?
         </div>
         <div class="chat-bubble ai">
-          <strong>KosherGPT:</strong> Нет. Зажигание электрического света — одна из 39 мелахот (запрещённых работ) в шаббат. Это подпадает под <em>Мав'ир</em> (создание огня/энергии)...
-          <div class="chat-typing" style="margin-top:6px"><span></span><span></span><span></span></div>
+          <strong>KosherGPT:</strong> Нет — это <em>Мав'ир</em>, одна из 39 мелахот. Свет нужно включить до шаббата.
         </div>
       </div>
     </div>
@@ -357,11 +392,16 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    // Fade-in on scroll (with fallback)
+    const fadeEls = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1, rootMargin: '50px' });
+      fadeEls.forEach(el => observer.observe(el));
+    }
+    // Fallback: show all after 1s
+    setTimeout(() => fadeEls.forEach(el => el.classList.add('visible')), 1000);
 
     // Signup form
     document.getElementById('signupForm')?.addEventListener('submit', function(e) {
@@ -374,5 +414,6 @@
       input.placeholder = 'Спасибо! Мы скоро напишем.';
     });
   </script>
+  <script src="i18n.js"></script>
 </body>
 </html>
