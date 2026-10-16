@@ -39,7 +39,7 @@
     "delivery": "Cloudflare Turnstile protects this form from bots. Resend delivers the message to the KosherGPT team, along with the country it was sent from.",
     "captcha": "We could not confirm you are not a bot. Try again.",
     "rate": "Too many attempts. Wait a minute and try again.",
-    "check_hint": "Tick the box below to confirm you are not a bot.",
+    "check_hint": "Tick the box above to confirm you are not a bot.",
     "noscript": "The form needs JavaScript to protect against spam. Please turn it on."
   },
   "home": {
