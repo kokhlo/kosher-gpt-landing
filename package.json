@@ -1,10 +1,11 @@
 {
   "name": "kosher-gpt-landing",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Static HTML - no build needed' && mkdir -p dist && cp -r * dist/",
-    "preview": "npx serve dist"
+    "build": "python3 tools/build.py",
+    "build:dev": "python3 tools/build.py --dev",
+    "preview": "python3 tools/build.py --dev && python3 tools/dev_server.py",
+    "images": "python3 tools/images.py"
   }
 }

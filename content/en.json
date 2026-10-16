@@ -1,0 +1,412 @@
+{
+  "lang": "en",
+  "dir": "ltr",
+  "locale": "en_US",
+  "short": "EN",
+  "label": "English",
+  "common": {
+    "skip": "Skip to content",
+    "nav_features": "Features",
+    "nav_try": "Try it",
+    "nav_orgs": "For kashrut organizations",
+    "nav_contact": "Contact",
+    "lang_button": "Language",
+    "more_langs": "More languages soon",
+    "orgs_suffix": "for organizations",
+    "footer_note": "KosherGPT does not replace a competent rabbi.",
+    "footer_beta": "Beta on TestFlight. App Store soon.",
+    "lang_hint": "This page is also in English"
+  },
+  "form": {
+    "name": "Your name",
+    "org": "Organization",
+    "email": "Email",
+    "phone": "Phone or messenger",
+    "optional": "optional",
+    "place": "Country and city",
+    "message": "Message",
+    "message_ph_partners": "Tell us about your list: how many products, in what format",
+    "message_ph_beta": "What would you ask KosherGPT first?",
+    "consent": "I agree that KosherGPT uses these details to answer my request: to reply to me or to send a TestFlight invite.",
+    "submit_partners": "Send",
+    "submit_beta": "Request an invite",
+    "sending": "Sending…",
+    "success_title": "Thank you, we got it",
+    "success_text": "We will reply to the email you gave.",
+    "error": "The message did not go through. Check your connection and try again.",
+    "not_configured": "The form is not connected yet.",
+    "invalid": "Fill in the required fields.",
+    "delivery": "Cloudflare Turnstile protects this form from bots. Resend delivers the message to the KosherGPT team, along with the country it was sent from.",
+    "captcha": "We could not confirm you are not a bot. Try again.",
+    "rate": "Too many attempts. Wait a minute and try again.",
+    "check_hint": "Tick the box below to confirm you are not a bot.",
+    "noscript": "The form needs JavaScript to protect against spam. Please turn it on."
+  },
+  "home": {
+    "title": "KosherGPT: Halacha answers with sources and a kosher scanner",
+    "description": "Answers on Halacha and Kashrut with links to the primary texts, Shabbat times and reminders, and a barcode scanner. An app for observant Jews.",
+    "og_title": "Ask about Halacha. See the sources.",
+    "h1_a": "Ask about Halacha.",
+    "h1_b": "See the sources.",
+    "lead": "Answers on Halacha and Kashrut with links to the primary texts, Shabbat times and reminders, and a barcode scanner for the store. Where you need a ruling, KosherGPT sends you to your rabbi.",
+    "cta_beta": "Join the beta",
+    "cta_orgs": "For kashrut organizations",
+    "one_h2": "One app instead of three",
+    "one_lead": "A kosher scanner, a zmanim app and a chatbot you can’t check. KosherGPT does all three, in English, Hebrew and Russian.",
+    "one_items": [
+      {
+        "icon": "chat",
+        "title": "Answers with sources.",
+        "text": "Numbered links to the Mishneh Torah, the Shulchan Arukh and more."
+      },
+      {
+        "icon": "sun",
+        "title": "Zmanim and Shabbat reminders.",
+        "text": "For your city, with a reminder before candle lighting."
+      },
+      {
+        "icon": "moon",
+        "title": "Shabbat mode.",
+        "text": "From candle lighting to Havdalah nothing is sent to the network."
+      },
+      {
+        "icon": "barcode",
+        "title": "Barcode scanner.",
+        "text": "Point the camera at a product in the store."
+      }
+    ],
+    "one_shot_alt": "KosherGPT answering “May one eat chicken with milk?” with numbered sources",
+    "check_h2": "Answers you can check",
+    "check_lead": "Every answer carries numbered citations. Tap one to read the source, then open it in full on Sefaria.",
+    "check_items": [
+      "No fitting source, no confident answer: the app says so.",
+      "Each claim points to the text it comes from.",
+      "A practical ruling for your situation stays with your rabbi."
+    ],
+    "check_alt_a": "An answer with numbered citations",
+    "check_alt_b": "The sources sheet with an Open in Sefaria button",
+    "scan_tag": "Kosher lists: rolling out with kashrut departments",
+    "scan_h2": "Scan in the store. See whose list it’s on.",
+    "scan_lead": "The scanner never says “kosher” on its own. It shows which organization lists the product, in which edition and with which markings. When it doesn’t know, it says so.",
+    "scan_note": "Example products, sample data.",
+    "scan_group": "Example scanner answers",
+    "scan_states": [
+      {
+        "id": "listed",
+        "label": "On a list",
+        "name": "Milk 3.2%, 1 L",
+        "code": "4601234567893",
+        "tone": "ok",
+        "title": "On a kashrut department’s list, 2026 edition",
+        "note": "Marked on the list: dairy."
+      },
+      {
+        "id": "missing",
+        "label": "Not found",
+        "name": "Oat cookies, 300 g",
+        "code": "4607654321015",
+        "tone": "neutral",
+        "title": "Not on any connected list",
+        "note": "That does not mean it isn’t kosher. Check the mark on the package."
+      },
+      {
+        "id": "removed",
+        "label": "Dropped from a list",
+        "name": "Apple juice, 1 L",
+        "code": "4605550123450",
+        "tone": "warn",
+        "title": "Not in the current edition of the list",
+        "note": "It was in the 2025 edition. Ask the organization."
+      }
+    ],
+    "shabbat_h2": "Shabbat, on time",
+    "shabbat_lead": "Zmanim for your city or one you pick. A reminder 30 minutes or 2 hours before candle lighting, and one at Havdalah. On Shabbat the app works from saved data and sends nothing.",
+    "shabbat_eyebrow": "This Friday · example",
+    "shabbat_city": "Your city",
+    "shabbat_candles": "Candles",
+    "shabbat_havdalah": "Havdalah",
+    "shabbat_reminder": "Reminder 2 hours before candle lighting",
+    "compare_h2": "What other apps leave out",
+    "compare_cols": [
+      "KosherGPT",
+      "Kosher scanners",
+      "Zmanim apps",
+      "AI chatbots"
+    ],
+    "compare_rows": [
+      {
+        "label": "Halacha answers with primary sources",
+        "cells": [
+          "yes",
+          "no",
+          "no",
+          "rarely cited"
+        ]
+      },
+      {
+        "label": "Zmanim and Shabbat reminders",
+        "cells": [
+          "yes",
+          "no",
+          "yes",
+          "no"
+        ]
+      },
+      {
+        "label": "Scanner that names whose list it is",
+        "cells": [
+          "yes, rolling out",
+          "some",
+          "no",
+          "no"
+        ]
+      },
+      {
+        "label": "English, Hebrew and Russian",
+        "cells": [
+          "yes",
+          "rarely",
+          "some",
+          "yes"
+        ]
+      },
+      {
+        "label": "All of it in one app",
+        "cells": [
+          "yes",
+          "no",
+          "no",
+          "no"
+        ]
+      }
+    ],
+    "compare_yes": "Yes",
+    "compare_no": "No",
+    "compare_note": "Typical apps in each category, from App Store listings, October 2026.",
+    "ask_h2": "Ask the way you would in the app",
+    "ask_lead": "Tap a question on the phone. It gets sent, and KosherGPT answers with links to its sources. Tap a source number to open it.",
+    "ask_empty": "Ask me about Halacha, Kashrut or the app.",
+    "ask_sources": "Sources",
+    "ask_open": "Open in Sefaria",
+    "ask_show": "Show source",
+    "ask_placeholder": "Ask with sources",
+    "ask_close": "Close",
+    "qa": [
+      {
+        "id": "chicken",
+        "q": "May one eat chicken with milk?",
+        "paras": [
+          {
+            "text": "No. Eating poultry with milk is forbidden by rabbinic decree, though not by the Torah.",
+            "chips": [
+              1,
+              2
+            ]
+          },
+          {
+            "text": "Unlike meat with milk, cooking poultry with milk or benefiting from it is not forbidden; only eating it is.",
+            "chips": [
+              2
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "n": 1,
+            "title": "Mishneh Torah, Forbidden Foods 9",
+            "note": "The Rambam on meat and milk, poultry included.",
+            "href": "https://www.sefaria.org/Mishneh_Torah,_Forbidden_Foods.9"
+          },
+          {
+            "n": 2,
+            "title": "Shulchan Arukh, Yoreh De'ah 87",
+            "note": "Which meat and milk are forbidden to cook, eat and benefit from.",
+            "href": "https://www.sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.87"
+          }
+        ]
+      },
+      {
+        "id": "wait",
+        "q": "How long after meat before dairy?",
+        "paras": [
+          {
+            "text": "The common practice is to wait six hours.",
+            "chips": [
+              1,
+              2
+            ]
+          },
+          {
+            "text": "Some communities keep shorter customs, recorded by the Rema. Ask your rabbi which custom your family follows.",
+            "chips": [
+              2
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "n": 1,
+            "title": "Mishneh Torah, Forbidden Foods 9:28",
+            "note": "Waiting after meat before eating dairy.",
+            "href": "https://www.sefaria.org/Mishneh_Torah,_Forbidden_Foods.9.28"
+          },
+          {
+            "n": 2,
+            "title": "Shulchan Arukh, Yoreh De'ah 89:1",
+            "note": "Six hours, with the Rema on other customs.",
+            "href": "https://www.sefaria.org/Shulchan_Arukh,_Yoreh_De'ah.89.1"
+          }
+        ]
+      },
+      {
+        "id": "shabbat",
+        "q": "Does the app work on Shabbat?",
+        "paras": [
+          {
+            "text": "From candle lighting to Havdalah the app works from saved data and sends nothing to the network.",
+            "chips": []
+          }
+        ],
+        "sources": []
+      }
+    ],
+    "orgs_h2": "Do you keep a kosher product list?",
+    "orgs_text": "We link it to barcodes for free and show it in the scanner, with your organization named as the source. Nothing goes live before you check it.",
+    "orgs_link": "How it works for organizations",
+    "beta_h2": "Join the beta",
+    "beta_lead": "KosherGPT is in beta on TestFlight for iPhone. Leave your email and we’ll send an invite."
+  },
+  "partners": {
+    "title": "KosherGPT for kashrut organizations: your list in a scanner",
+    "description": "We link your kosher product list to barcodes for free and show it in the KosherGPT scanner, with you named as the source. Published only after your review.",
+    "og_title": "Your kosher product list at the shelf, by barcode",
+    "h1": "Your kosher product list at the shelf, by barcode",
+    "lead": "A shopper points KosherGPT at a product and sees that it is on your list. We digitize your list and link it to barcodes for free. Your organization is named as the source everywhere.",
+    "cta": "Let’s talk",
+    "scan_group": "Example scanner answers",
+    "scan_note": "Sample data. Tap to see the scanner’s three answers.",
+    "scan_states": [
+      {
+        "id": "listed",
+        "label": "On your list",
+        "name": "Milk 3.2%, 1 L",
+        "code": "4601234567893",
+        "tone": "ok",
+        "title": "On the list of: your organization, 2026 edition",
+        "note": "Marked on the list: dairy."
+      },
+      {
+        "id": "missing",
+        "label": "Not found",
+        "name": "Oat cookies, 300 g",
+        "code": "4607654321015",
+        "tone": "neutral",
+        "title": "Not on any connected list",
+        "note": "That does not mean it isn’t kosher. Check the mark on the package."
+      },
+      {
+        "id": "removed",
+        "label": "Not in the new edition",
+        "name": "Apple juice, 1 L",
+        "code": "4605550123450",
+        "tone": "warn",
+        "title": "Not in the current edition of the list",
+        "note": "It was in the 2025 edition. Ask the organization."
+      }
+    ],
+    "how_h2": "How the scanner works",
+    "how": [
+      {
+        "title": "The camera reads the barcode",
+        "text": "EAN-13, EAN-8 or UPC-E, the codes on packages in stores. This already works in the app."
+      },
+      {
+        "title": "We look it up in connected lists",
+        "text": "Each list is kept separately, with the organization’s name and the edition."
+      },
+      {
+        "title": "Whole product lines count",
+        "text": "If your list says “all plain yogurts of brand X”, the scanner matches the brand and category and shows your wording verbatim."
+      },
+      {
+        "title": "Every answer is signed",
+        "text": "Organization, list edition and markings: dairy, pareve, Pesach. The app does not rule on kashrut."
+      },
+      {
+        "title": "Honest when it doesn’t know",
+        "text": "“Not found” does not mean “not kosher”, and the scanner says so. If a product left the new edition, it says that too."
+      },
+      {
+        "title": "Silent on Shabbat",
+        "text": "From candle lighting to Havdalah the app does not go online, and neither does the scanner."
+      }
+    ],
+    "steps_h2": "What we need from you",
+    "steps": [
+      {
+        "title": "You send the list",
+        "text": "A spreadsheet or a PDF, whichever is easier."
+      },
+      {
+        "title": "We digitize it",
+        "text": "Every row is checked against the original."
+      },
+      {
+        "title": "We link barcodes",
+        "text": "A person checks every uncertain match."
+      },
+      {
+        "title": "You review",
+        "text": "Nothing is published without your confirmation."
+      },
+      {
+        "title": "Your list is live",
+        "text": "We update to a new edition when you tell us."
+      }
+    ],
+    "gets_h2": "What your organization gets",
+    "gets": [
+      {
+        "title": "Your list works at the shelf",
+        "text": "A PDF is hard to read in a store. The scanner answers in a second, and shoppers see the answer came from you."
+      },
+      {
+        "title": "Feedback",
+        "text": "Error reports and anonymized statistics: which products people look for and do not find."
+      },
+      {
+        "title": "Alerts about suspicious marks",
+        "text": "Users will be able to send a photo of a mark that does not match yours. We will pass it on to you."
+      }
+    ],
+    "terms_h2": "You remain the source and the owner of your list",
+    "terms": [
+      "Free for the organization.",
+      "Published only after you check it.",
+      "Every entry names your organization and the list edition.",
+      "Any entry, or the whole list, is removed on request.",
+      "Your kashrut mark is shown only with your permission."
+    ],
+    "faq_h2": "Common questions",
+    "faq": [
+      {
+        "q": "Will you decide what is kosher?",
+        "a": "No. The app shows one thing only: the product is on the list of a given organization, in a given edition, with given markings. The person and their rabbi decide."
+      },
+      {
+        "q": "Communities follow different standards.",
+        "a": "Every entry names its organization, and users choose which organizations they trust. We do not rank organizations."
+      },
+      {
+        "q": "We already have our own app.",
+        "a": "We can show your list with a link to your app, or simply exchange data. Whatever works for you."
+      },
+      {
+        "q": "What works today?",
+        "a": "The scanner in the app reads barcodes and shows the product name and maker. We are starting to connect organizations’ lists now, and you can be among the first."
+      }
+    ],
+    "contact_h2": "Let’s talk",
+    "contact_lead": "Write to us and we will get in touch. You can tell us about your list right away: how many products it has and in what format."
+  }
+}
